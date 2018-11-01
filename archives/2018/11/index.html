@@ -346,6 +346,39 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2018/11/01/使用-NetCore搭建一个简单的WebApi/">
+            
+                <span>使用.NetCore搭建一个简单的WebApi</span>
+        </a>
+        <div class="abstract-content">
+            创建工程和数据库
+
+首先在Visual Studio中新建.NetCore Api工程CoreWebApiWithPetaPoco.
+在Nuget中引入第三方包PetaPoco.NetCore.
+本地创建数据库并创建一个名为AuthUser的表:
+
+
+12345CREATE TABLE [dbo].[AuthUser] (    [Id] BIGINT IDENTITY (1, 1) NOT NULL,    [Name] NVARCHAR (50) NOT NULL,    PRIMARY KEY CLUSTERED ([Id] ASC));
+创建模型
+
+在本地项目中新建Models文...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/11/01</span>
+            </div>
+            <!-- tags  -->
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2018/11/01/使用OneDrive作为图床/">
             
                 <span>使用OneDrive作为图床</span>
@@ -496,9 +529,16 @@
     
     
     
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 2
+        Total : 3
         </div>
         <!-- search  -->
         
@@ -511,6 +551,11 @@
     
     <div class="archive-year"> 2018 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/01</span><a class="archive-post-title" href="/2018/11/01/使用-NetCore搭建一个简单的WebApi/">使用.NetCore搭建一个简单的WebApi</a>
+        </li>
     
     
         <li class="archive-post-item">
