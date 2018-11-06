@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="Microbubu Groner">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="Microbubu Groner">
+    
+    <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
+    
+    <meta name="description" content="">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Python与大数据入门 · Microbubu&#39;s Lab</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href="/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href="/assets/blog.ico">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script">
+    <link rel="preload" href="/scripts/main.js" as="script">
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin="">
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin="">
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/">Microbubu的迷你实验室</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">Python与大数据入门</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href="/">Microbubu的迷你实验室</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+
+height:50vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(https://source.unsplash.com/featured/?nature,flower)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            Python与大数据入门
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class="post-intro-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Python">Python</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">1.7k</span>阅读时长: <span class="post-count reading-time">7 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2018/11/06</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <p>声明：本文内容转载自<a href="https://www.cnblogs.com/liaojiafa/p/6239262.html" target="_blank" rel="noopener">CNBLOGS-温柔易谈</a>，文章内容根据需要进行了更改。</p>
+<h2 id="Python数据分析与挖掘技术概述"><a href="#Python数据分析与挖掘技术概述" class="headerlink" title="Python数据分析与挖掘技术概述"></a>Python数据分析与挖掘技术概述</h2><h3 id="数据分析模块"><a href="#数据分析模块" class="headerlink" title="数据分析模块"></a>数据分析模块</h3><ol>
+<li><p>numpy:<br>该模块可以高效处理数据，提供对数组的支持，很多模块都依赖于此，比如pandas, scipy, matplotlib等。</p>
+</li>
+<li><p>pandas:<br>主要用于数据的采集和分析。</p>
+</li>
+<li><p>scipy:<br>主要用于数值计算，同时支持矩阵运算，并且提供了很多高效的数据处理功能，如积分、微分方程求样等。</p>
+</li>
+<li><p>matplotlib:<br>作图模块，可以结合其他数据分析模块，可视化呈现数据。</p>
+</li>
+<li><p>statsmodels:<br>主要用于统计分析。</p>
+</li>
+<li><p>Gensim:<br>主要用于文本挖掘。</p>
+</li>
+<li><p>sklearn:<br>主要用于机器学习。</p>
+</li>
+<li><p>keras:<br>主要用于深度学习。</p>
+</li>
+</ol>
+<p>推荐使用Anaconda，因为它已经自带了很多模块。</p>
+<h3 id="numpy模块的简单使用"><a href="#numpy模块的简单使用" class="headerlink" title="numpy模块的简单使用"></a>numpy模块的简单使用</h3><p>numpy模块已经在Anaconda3中自带。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">print(x.min())  <span class="comment"># 最小值</span></span><br><span class="line">print(x2.max())</span><br><span class="line">print(x2.min())</span><br><span class="line">x1 = x[<span class="number">1</span>:<span class="number">3</span>]  <span class="comment"># 切片操作</span></span><br><span class="line">print(x1)</span><br><span class="line"></span><br><span class="line"><span class="comment"># numpy.ramdom.random_intergers(low, high, size)</span></span><br><span class="line">data = numpy.random.random_integers(<span class="number">1</span>, <span class="number">20000</span>, <span class="number">10</span>)</span><br><span class="line">print(data)</span><br><span class="line"><span class="comment"># numpy.random.normal(loc, scale, size), 获取正态随机数</span></span><br><span class="line"><span class="comment"># loc: 均值, scale: 偏移值, size: 个数</span></span><br><span class="line"><span class="comment"># 偏移值决定了每个数之间的差，当偏移值大于开始值时，会产生负数</span></span><br><span class="line">data = numpy.random.normal(<span class="number">3.2</span>, <span class="number">29.2</span>, <span class="number">10</span>)</span><br><span class="line">print(data)</span><br></pre></td></tr></table></figure>
+<p>结果:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">33</span><br><span class="line">4</span><br><span class="line">[&apos;f&apos;, &apos;g&apos;]</span><br><span class="line">[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, 1]</span><br><span class="line">[5 6]</span><br><span class="line">[ 4478 13538 19636   466  7918 14936 15676  2916  3977 11810]</span><br><span class="line">[-32.41772339 -18.03021801  10.54666195   2.94540939 -34.54169203</span><br><span class="line">  30.18054685 -94.33105754  -6.18915783 -21.3491869   27.70687129]</span><br></pre></td></tr></table></figure>
+<h3 id="pandas模块的使用"><a href="#pandas模块的使用" class="headerlink" title="pandas模块的使用"></a>pandas模块的使用</h3><p>pandas模块也已存在于Anaconda3中。</p>
+<h4 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas</span><br><span class="line"></span><br><span class="line">a = pandas.Series([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">34</span>])  <span class="comment"># 相当于一维数组</span></span><br><span class="line">b = pandas.DataFrame([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>], [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>], [<span class="number">5</span>]])  <span class="comment"># 相当于二维数组</span></span><br><span class="line">print(a.head())  <span class="comment"># 默认取头部前5行</span></span><br><span class="line">print(a.head(<span class="number">2</span>))</span><br><span class="line">print(b.tail())  <span class="comment"># 默认取尾部后5行</span></span><br><span class="line">print(b.tail(<span class="number">1</span>))</span><br></pre></td></tr></table></figure>
+<p>结果:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">0     1</span><br><span class="line">1     2</span><br><span class="line">2     3</span><br><span class="line">3    34</span><br><span class="line">dtype: int64</span><br><span class="line">0    1</span><br><span class="line">1    2</span><br><span class="line">dtype: int64</span><br><span class="line">   0     1     2    3</span><br><span class="line">0  1     2     3  4.0</span><br><span class="line">1  a     b     c  NaN</span><br><span class="line">2  5  None  None  NaN</span><br><span class="line">   0     1     2   3</span><br><span class="line">2  5  None  None NaN</span><br></pre></td></tr></table></figure>
+<h4 id="数据统计"><a href="#数据统计" class="headerlink" title="数据统计"></a>数据统计</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(b.describe()) <span class="comment"># 显示统计数据信息</span></span><br></pre></td></tr></table></figure>
+<p>结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">         3  # 数组中的元素个数</span><br><span class="line">count  1.0  # 总数</span><br><span class="line">mean   4.0  # 平均数</span><br><span class="line">std    NaN  # 标准数</span><br><span class="line">min    4.0  # 最小值</span><br><span class="line">25%    4.0  # 分位数</span><br><span class="line">50%    4.0  # 分位数</span><br><span class="line">75%    4.0  # 分位数</span><br><span class="line">max    4.0  # 最大值</span><br></pre></td></tr></table></figure></p>
+<h4 id="转置"><a href="#转置" class="headerlink" title="转置"></a>转置</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(b.T)  <span class="comment"># 转置</span></span><br></pre></td></tr></table></figure>
+<p>结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">   0    1     2</span><br><span class="line">0  1    a     5</span><br><span class="line">1  2    b  None</span><br><span class="line">2  3    c  None</span><br><span class="line">3  4  NaN   NaN</span><br></pre></td></tr></table></figure></p>
+<h4 id="通过pandas模块导入数据"><a href="#通过pandas模块导入数据" class="headerlink" title="通过pandas模块导入数据"></a>通过pandas模块导入数据</h4><h5 id="csv文件"><a href="#csv文件" class="headerlink" title="csv文件"></a>csv文件</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">csv_data = pandas.read_csv(<span class="string">'usr/csv_file.csv'</span>)</span><br></pre></td></tr></table></figure>
+<h5 id="Excel表格数据"><a href="#Excel表格数据" class="headerlink" title="Excel表格数据"></a>Excel表格数据</h5><p>该方法依赖于xlrd模块，使用之前需要安装该模块。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">excel_data = pandas.read_excel(<span class="string">'usr\excel_file.xlsx'</span>)</span><br></pre></td></tr></table></figure>
+<h5 id="读取SQL"><a href="#读取SQL" class="headerlink" title="读取SQL"></a>读取SQL</h5><p>依赖于PyMySQL，需要安装此模块。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">conn_str = pymysql.connect(host = <span class="string">'127.0.0.1'</span>, user = <span class="string">'root'</span>, passwd = <span class="string">'root'</span>, db = <span class="string">'test_db'</span>)</span><br><span class="line">sql = <span class="string">'select * from test_table'</span></span><br><span class="line">sql_data = pandas.read_sql(sql, conn_str)</span><br></pre></td></tr></table></figure>
+<h5 id="读取html"><a href="#读取html" class="headerlink" title="读取html"></a>读取html</h5><p>依赖于lxml模块。</p>
+<p>对于使用https协议请求的网页，依赖于BeautifulSoup4和html5lib模块。</p>
+<p>读取html只会读取表格，也就是<code>&lt;table&gt;</code>标签包裹的内容。</p>
+<p>显示的时候是通过python的列表展示的，同时添加了行与列的标识。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">local_html_data = pandas.read_html(<span class="string">'usr\html_file.html'</span>)</span><br><span class="line">online_html_data = pandas.read_html(<span class="string">'https://book.douban.com'</span>)</span><br></pre></td></tr></table></figure>
+<h5 id="读取txt文件"><a href="#读取txt文件" class="headerlink" title="读取txt文件"></a>读取txt文件</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">text_data = pandas.read_table(<span class="string">'usr\text_file.txt'</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="scipy模块"><a href="#scipy模块" class="headerlink" title="scipy模块"></a>scipy模块</h3><p>该模块也集成在Anaconda3中。</p>
+<h3 id="matplotlib数据可视化分析"><a href="#matplotlib数据可视化分析" class="headerlink" title="matplotlib数据可视化分析"></a>matplotlib数据可视化分析</h3><p>该模块在Anaconda3中也有集成。</p>
+<h4 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pylab</span><br><span class="line"><span class="keyword">import</span> numpy</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下面定义x轴和y轴</span></span><br><span class="line">x = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">8</span>]</span><br><span class="line">y = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">8</span>]</span><br><span class="line">pylab.plot(x, y) <span class="comment"># 将x,y轴的数据信息放入pylab，之后调用show方法画图</span></span><br><span class="line">pylab.show()</span><br></pre></td></tr></table></figure>
+<p>结果：</p>
+<p><img src="https://jrfd4q.by.files.1drv.com/y4m03xxBOpzdoTb4LW1lZQGB3DK6ZuWC-sRRxf5lRg9cyCMMrLOFSRIvW0vhf9mSN55EVVda7mvjV2QDPiB77OrdnSZuqPndQrxxyM7dWaCReKYd3zXCzk12VaqIKxIs_defQQAx9hE3RPsJqTGgmMaTe86IF2AS0iXTuvCXrmOPb133nA2NYzbvifvqllNn54lDCySRzcwZzRvi1AC58vwyw?width=640&amp;height=470&amp;cropmode=none" alt="matplotlib基本使用"></p>
+<h4 id="自定义显示样式"><a href="#自定义显示样式" class="headerlink" title="自定义显示样式"></a>自定义显示样式</h4><h5 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h5><blockquote>
+<ul>
+<li>直线图(默认)</li>
+<li><code>-</code> 直线</li>
+<li><code>--</code> 虚线</li>
+<li><code>-. -.</code> 形式</li>
+<li><code>:</code> 细小虚线</li>
+</ul>
+</blockquote>
+<h5 id="颜色"><a href="#颜色" class="headerlink" title="颜色"></a>颜色</h5><blockquote>
+<ul>
+<li>青色: <code>c</code></li>
+<li>红色: <code>r</code></li>
+<li>品红: <code>m</code></li>
+<li>绿色: <code>g</code></li>
+<li>蓝色: <code>b</code></li>
+<li>黄色: <code>y</code></li>
+<li>黑色: <code>k</code></li>
+<li>白色: <code>w</code></li>
+</ul>
+</blockquote>
+<h5 id="形状"><a href="#形状" class="headerlink" title="形状"></a>形状</h5><blockquote>
+<ul>
+<li>方形: <code>s</code></li>
+<li>星形: <code>*</code></li>
+<li>五角: <code>p</code></li>
+</ul>
+</blockquote>
+<ul>
+<li>实例1:</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pylab.plot(x, y, <span class="string">'or'</span>)  <span class="comment"># o代表画散点图，r表示红色</span></span><br><span class="line">pylab.show()</span><br></pre></td></tr></table></figure>
+<p>结果:</p>
+<p><img src="https://ksyfha.by.files.1drv.com/y4mOk7Obiihgzkj99J0KQHzteglmjN77gad4PrwrQ5G9fsyP9QTUIdePg7BW_LdG8nwlNvNTOBs4EH4Hz8gSfE5rnIHdXMhOQ3JXklvT98gJjkUgzPAadNcwWUYuayACQJSM4rPspotd_yZjD-t0uTE2gjl2VquZ8yf-yZg302LZtrd7v_MKbHv7W-N_UAQT5Y6WlDI0xDoNhyi3QiuUvzGmA?width=640&amp;height=470&amp;cropmode=none" alt="红色散点图"></p>
+<ul>
+<li>实例2:</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">pylab.plot(x, y, <span class="string">'pr--'</span>)  <span class="comment"># p表示图形是五角星，r表示红色,--表示虚线</span></span><br><span class="line">pylab.title(<span class="string">'Learning'</span>)  <span class="comment"># 标题</span></span><br><span class="line">pylab.xlabel(<span class="string">'Args'</span>)  <span class="comment"># x轴标签</span></span><br><span class="line">pylab.ylabel(<span class="string">'salary'</span>)  <span class="comment"># y轴标签</span></span><br><span class="line">pylab.xlim(<span class="number">2</span>)  <span class="comment"># 从x轴的2开作图</span></span><br><span class="line">pylab.show()</span><br></pre></td></tr></table></figure>
+<p>结果:</p>
+<p><img src="https://wmgona.by.files.1drv.com/y4mp8iudB-iRw8DIdQxsrwS4U7wRjHnCg2HK-h9jHTxATK6TVrvrBB840mYlEHbCbwYJI_AWnVcT5coJq4yXrBUkmqhNcDvSjAJluDu-w0wVgVoRdKKDGXdnPxTEKfDjk1UEACrBTTycc8cwupFRXdjf15j_CTX0Q5xzD3A0izShZMuSXy2ahNIx_vOnXrN8UaW-mdAdCW9qWV1z6jDbmfgcg?width=640&amp;height=470&amp;cropmode=none" alt="实例2"></p>
+<h5 id="直方图"><a href="#直方图" class="headerlink" title="直方图"></a>直方图</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">data = numpy.random.normal(<span class="number">5.0</span>, <span class="number">4.0</span>, <span class="number">10</span>)    <span class="comment"># 正态随机数</span></span><br><span class="line">pylab.hist(data)</span><br><span class="line">pylab.show()</span><br></pre></td></tr></table></figure>
+<p>结果:</p>
+<p><img src="https://8zy2pg.by.files.1drv.com/y4mCmB4PoQmvqVPCkOmbVX5qTMffMLcdrBni4_vR19TW9wJww7SrXoMMnHzUvapLCyE-A-ftI-v0gDdcjQ9LEPeIzESXc0ZV0UqKwtKHa8DwSlTvzby7MyKShfwWCwWqASr_Wdnp3RIK0aFY4-qbC-yOdHc3RZHgzUUnIyfoDXtcsKQs7Ux9xlVEE1gbulN6OZIFcRfSUTwrFlR7d2K0VavFg?width=640&amp;height=470&amp;cropmode=none" alt="直方图1"></p>
+<p>还可以通过histtype参数指定直方图的类型:</p>
+<blockquote>
+<ul>
+<li>bar: is a traditional bar-type histogram. If multiple data are given, the bars are aranged side by side.</li>
+<li>barstacked: is a bar-type histogram where multiple data are stacked on top of each other.</li>
+<li>step: generates a lineplot that is by default unfilled.</li>
+<li>stepfilled: generates a lineplot that is by default filled.</li>
+</ul>
+</blockquote>
+<p>例如:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">data = numpy.random.normal(<span class="number">5.0</span>, <span class="number">4.0</span>, <span class="number">10</span>)    <span class="comment"># 正态随机数</span></span><br><span class="line">pylab.hist(data, histtype= <span class="string">'step'</span>)</span><br><span class="line">pylab.show()</span><br></pre></td></tr></table></figure>
+<p>结果:</p>
+<p><img src="https://pop7aw.by.files.1drv.com/y4muzaioDSb3cRw5d2YkwmP2gTvA1mTfXHrragysaPYzz4ROEQXK-zcQlVyqgbKobuAq50gTUoTVEa3OyV9ozKotKT9x7fa7hYy9BXjK4YO_jUwgwWaNivY8gLjkjVKbb5UTh-XLxjc0y50dl8pFBisXJb4MPxaSZvcKz53GqVsLujV7RndjnmPW0EMDHigxkY2CdWiUq0ZGyNXocTIqg6Jlw?width=640&amp;height=470&amp;cropmode=none" alt="直方图2"></p>
+<h5 id="子图"><a href="#子图" class="headerlink" title="子图"></a>子图</h5><p>生成图表使用的方法是plot，子图则是subplot.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># subplot(行, 列, 子图使用的区域)</span></span><br><span class="line">pylab.subplot(<span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>)  <span class="comment"># 声明一个大图里划分为4块(2*2)，子图使用第一个区域(坐标为x=1,y=1)</span></span><br><span class="line">pylab.subplot(<span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>)  <span class="comment"># 声明一个大图里划分为4块(2*2)，子图使用第二个区域(坐标为x=2,y=2)</span></span><br></pre></td></tr></table></figure>
+<p>实例:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pylab</span><br><span class="line"></span><br><span class="line">x = [<span class="number">1</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">9</span>]</span><br><span class="line">y = [<span class="number">3</span>, <span class="number">21</span>, <span class="number">33</span>, <span class="number">43</span>]</span><br><span class="line">pylab.subplot(<span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>)  <span class="comment"># 声明一个大图里划分为4块(2*2)，子图使用第1个区域(坐标为x=1,y=1)</span></span><br><span class="line">pylab.plot(x, y)</span><br><span class="line"></span><br><span class="line">x = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">y = [<span class="number">40</span>, <span class="number">12</span>, <span class="number">6</span>, <span class="number">0</span>]</span><br><span class="line">pylab.subplot(<span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>)  <span class="comment"># 声明一个大图里划分为4块(2*2)，子图使用第1个区域(坐标为x=1,y=2)</span></span><br><span class="line">pylab.plot(x, y)</span><br><span class="line"></span><br><span class="line">x = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line">y = [<span class="number">13</span>, <span class="number">10</span>, <span class="number">6</span>, <span class="number">5</span>]</span><br><span class="line">pylab.subplot(<span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>)  <span class="comment"># 声明一个大图里划分为4块(2*2)，子图使用第3个区域(坐标为x=2,y=1)</span></span><br><span class="line">pylab.plot(x, y)</span><br><span class="line"></span><br><span class="line">x = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line">y = [<span class="number">80</span>, <span class="number">12</span>, <span class="number">90</span>, <span class="number">0</span>]</span><br><span class="line">pylab.subplot(<span class="number">2</span>, <span class="number">2</span>, <span class="number">4</span>)  <span class="comment"># 声明一个大图里划分为4块(2*2)，子图使用第4个区域(坐标为x=2,y=2)</span></span><br><span class="line">pylab.plot(x, y)</span><br><span class="line"></span><br><span class="line">pylab.show()</span><br></pre></td></tr></table></figure>
+<p>结果:</p>
+<p><img src="https://lfiidg.by.files.1drv.com/y4miriOzIEaGZIgGrf7_aOB3D3xZNyqfZDNLMbNlH4fYtaujjsRsxttY1WoA2ZwOGrecqLwUF4Wu_7uiGHvlLlQ9CJ_c7OydcpHPFMoIfJF4NiSDtRnkYZIywPgXtGO2FmQTbna272hs3_2Tt_FSFhFqQt9pl7jesBAvb1T14y8E-g7sKJhCLa_sRWbfp7rmkUX6WWOU54tdd-QQcukyhpiCQ?width=640&amp;height=470&amp;cropmode=none" alt="子图"></p>
+<h2 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h2><p>我们现在想统计网站的新闻浏览数与评论数，想知道这些数据最集中的位置，给出下面的数据：</p>
+<table>
+<thead>
+<tr>
+<th>no</th>
+<th>article_url</th>
+<th>reads_count</th>
+<th>comments_count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>url1</td>
+<td>2334</td>
+<td>128</td>
+</tr>
+<tr>
+<td>2</td>
+<td>url2</td>
+<td>3088</td>
+<td>235</td>
+</tr>
+<tr>
+<td>3</td>
+<td>url3</td>
+<td>12345</td>
+<td>321</td>
+</tr>
+<tr>
+<td>4</td>
+<td>url4</td>
+<td>5234</td>
+<td>500</td>
+</tr>
+<tr>
+<td>5</td>
+<td>url5</td>
+<td>2441</td>
+<td>130</td>
+</tr>
+<tr>
+<td>6</td>
+<td>url6</td>
+<td>2808</td>
+<td>250</td>
+</tr>
+<tr>
+<td>7</td>
+<td>url7</td>
+<td>3002</td>
+<td>287</td>
+</tr>
+<tr>
+<td>8</td>
+<td>url8</td>
+<td>4321</td>
+<td>335</td>
+</tr>
+<tr>
+<td>9</td>
+<td>url9</td>
+<td>4534</td>
+<td>383</td>
+</tr>
+<tr>
+<td>10</td>
+<td>url10</td>
+<td>18000</td>
+<td>986</td>
+</tr>
+<tr>
+<td>11</td>
+<td>url11</td>
+<td>3478</td>
+<td>367</td>
+</tr>
+<tr>
+<td>12</td>
+<td>url12</td>
+<td>4256</td>
+<td>354</td>
+</tr>
+</tbody>
+</table>
+<p>数据保存在一个csv文件中:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">no,article_url,reads_count,comments_count</span><br><span class="line">1,url1,2334,12</span><br><span class="line">2,url2,3088,235</span><br><span class="line">3,url3,12345,321</span><br><span class="line">4,url4,5234,500</span><br><span class="line">5,url5,2441,130</span><br><span class="line">6,url6,2808,250</span><br><span class="line">7,url7,3002,287</span><br><span class="line">8,url8,4321,335</span><br><span class="line">9,url9,4534,383</span><br><span class="line">10,url10,18000,986</span><br><span class="line">11,url11,3478,367</span><br><span class="line">12,url12,4256,354</span><br></pre></td></tr></table></figure>
+<p>我们可以这样做:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pylab</span><br><span class="line"><span class="keyword">import</span> pandas</span><br><span class="line"></span><br><span class="line">data = [[<span class="number">1</span>, <span class="string">'url1'</span>, <span class="number">2334</span>, <span class="number">12</span>],</span><br><span class="line">        [<span class="number">2</span>, <span class="string">'url2'</span>, <span class="number">3088</span>, <span class="number">235</span>],</span><br><span class="line">        [<span class="number">3</span>, <span class="string">'url3'</span>, <span class="number">12345</span>, <span class="number">321</span>],</span><br><span class="line">        [<span class="number">4</span>, <span class="string">'url4'</span>, <span class="number">5234</span>, <span class="number">500</span>],</span><br><span class="line">        [<span class="number">5</span>, <span class="string">'url5'</span>, <span class="number">2441</span>, <span class="number">130</span>],</span><br><span class="line">        [<span class="number">6</span>, <span class="string">'url6'</span>, <span class="number">2808</span>, <span class="number">250</span>],</span><br><span class="line">        [<span class="number">7</span>, <span class="string">'url7'</span>, <span class="number">3002</span>, <span class="number">287</span>],</span><br><span class="line">        [<span class="number">8</span>, <span class="string">'url8'</span>, <span class="number">4321</span>, <span class="number">335</span>],</span><br><span class="line">        [<span class="number">9</span>, <span class="string">'url9'</span>, <span class="number">4534</span>, <span class="number">383</span>],</span><br><span class="line">        [<span class="number">10</span>, <span class="string">'url10'</span>, <span class="number">18000</span>, <span class="number">986</span>],</span><br><span class="line">        [<span class="number">11</span>, <span class="string">'url11'</span>, <span class="number">3478</span>, <span class="number">367</span>],</span><br><span class="line">        [<span class="number">12</span>, <span class="string">'url12'</span>, <span class="number">4256</span>, <span class="number">354</span>]]</span><br><span class="line"></span><br><span class="line">csv_data = pandas.DataFrame(data)</span><br><span class="line">data_T = csv_data.T <span class="comment"># 转置</span></span><br><span class="line">reads = data_T.values[<span class="number">2</span>]  <span class="comment"># 取第3行</span></span><br><span class="line">comments = data_T.values[<span class="number">3</span>] <span class="comment"># 取第4行</span></span><br><span class="line">pylab.title(<span class="string">'Reads and Comments Analysis'</span>)</span><br><span class="line">pylab.xlabel(<span class="string">'reads'</span>)</span><br><span class="line">pylab.ylabel(<span class="string">'comments'</span>)</span><br><span class="line">pylab.plot(reads, comments, <span class="string">'ob'</span>)</span><br><span class="line">pylab.show()</span><br></pre></td></tr></table></figure>
+<p>结果:</p>
+<p><img src="https://tgwiza.by.files.1drv.com/y4mpGk6WJS351tHFjGUGsG3adhwlDbSGpctFVRfo-0wmB-kdLdOCEHdmcsLTA-HdEehKMtiWfxi5yL96hIUp5n1b5MEb_i8IVfFzDWJSLKUjebr1RGKG8rKczZgxF9QYVIk4BLhhjmicFt3JnT78055cwZPDAr8FU8DrQBRpkjVKgD9hKTy4jIBHHiHmcLafzNgr2ZXuMYwCYsrPNhFD0dMmQ?width=640&amp;height=470&amp;cropmode=none" alt="实践"></p>
+
+    </article>
+    <!-- license  -->
+    
+        <div class="license-wrapper">
+            <p>原文作者：<a href="https://microbubu.github.io">Microbubu Groner</a>
+            </p><p>原文链接：<a href="https://microbubu.github.io/2018/11/06/Python与大数据入门/">https://microbubu.github.io/2018/11/06/Python与大数据入门/</a>
+            </p><p>发表日期：<a href="https://microbubu.github.io/2018/11/06/Python与大数据入门/">November 6th 2018, 10:20:26 am</a>
+            </p><p>更新日期：<a href="https://microbubu.github.io/2018/11/06/Python与大数据入门/">November 6th 2018, 4:23:31 pm</a>
+            </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+        </div>
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2018/11/02/Markdown常用语法总结/" title="Markdown常用语法总结">
+                    <div class="prevTitle">Markdown常用语法总结</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:microbubu@live.com" class="iconfont-archer email" title="email"></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/Microbubu" class="iconfont-archer github" target="_blank" title="github"></a>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer wechat" title="wechat">
+                  
+                  <img class="profile-qr" src="/assets/wechat_qrcode.jpg">
+                </span>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Python数据分析与挖掘技术概述"><span class="toc-number">1.</span> <span class="toc-text">Python数据分析与挖掘技术概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#数据分析模块"><span class="toc-number">1.1.</span> <span class="toc-text">数据分析模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#numpy模块的简单使用"><span class="toc-number">1.2.</span> <span class="toc-text">numpy模块的简单使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pandas模块的使用"><span class="toc-number">1.3.</span> <span class="toc-text">pandas模块的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本用法"><span class="toc-number">1.3.1.</span> <span class="toc-text">基本用法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据统计"><span class="toc-number">1.3.2.</span> <span class="toc-text">数据统计</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#转置"><span class="toc-number">1.3.3.</span> <span class="toc-text">转置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#通过pandas模块导入数据"><span class="toc-number">1.3.4.</span> <span class="toc-text">通过pandas模块导入数据</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#csv文件"><span class="toc-number">1.3.4.1.</span> <span class="toc-text">csv文件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Excel表格数据"><span class="toc-number">1.3.4.2.</span> <span class="toc-text">Excel表格数据</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#读取SQL"><span class="toc-number">1.3.4.3.</span> <span class="toc-text">读取SQL</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#读取html"><span class="toc-number">1.3.4.4.</span> <span class="toc-text">读取html</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#读取txt文件"><span class="toc-number">1.3.4.5.</span> <span class="toc-text">读取txt文件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#scipy模块"><span class="toc-number">1.4.</span> <span class="toc-text">scipy模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#matplotlib数据可视化分析"><span class="toc-number">1.5.</span> <span class="toc-text">matplotlib数据可视化分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本使用"><span class="toc-number">1.5.1.</span> <span class="toc-text">基本使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#自定义显示样式"><span class="toc-number">1.5.2.</span> <span class="toc-text">自定义显示样式</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#类型"><span class="toc-number">1.5.2.1.</span> <span class="toc-text">类型</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#颜色"><span class="toc-number">1.5.2.2.</span> <span class="toc-text">颜色</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#形状"><span class="toc-number">1.5.2.3.</span> <span class="toc-text">形状</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#直方图"><span class="toc-number">1.5.2.4.</span> <span class="toc-text">直方图</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#子图"><span class="toc-number">1.5.2.5.</span> <span class="toc-text">子图</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实践"><span class="toc-number">2.</span> <span class="toc-text">实践</span></a></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 6
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2018 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/06</span><a class="archive-post-title" href="/2018/11/06/Python与大数据入门/">Python与大数据入门</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/02</span><a class="archive-post-title" href="/2018/11/02/Markdown常用语法总结/">Markdown常用语法总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/01</span><a class="archive-post-title" href="/2018/11/01/我的设备/">我的设备(不定期更新)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/01</span><a class="archive-post-title" href="/2018/11/01/使用-NetCore搭建一个简单的WebApi/">使用.NetCore搭建一个简单的WebApi</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/01</span><a class="archive-post-title" href="/2018/11/01/使用OneDrive作为图床/">使用OneDrive作为图床</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/31</span><a class="archive-post-title" href="/2018/10/31/第一篇博客/">回顾2018</a>
+        </li>
+    
+    </ul></div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="Markdown"><span class="iconfont-archer">&#xe606;</span>Markdown</span>
+    
+        <span class="sidebar-tag-name" data-tags="OneDrive"><span class="iconfont-archer">&#xe606;</span>OneDrive</span>
+    
+        <span class="sidebar-tag-name" data-tags="图床"><span class="iconfont-archer">&#xe606;</span>图床</span>
+    
+        <span class="sidebar-tag-name" data-tags=".NetCore"><span class="iconfont-archer">&#xe606;</span>.NetCore</span>
+    
+        <span class="sidebar-tag-name" data-tags="WebApi"><span class="iconfont-archer">&#xe606;</span>WebApi</span>
+    
+        <span class="sidebar-tag-name" data-tags="PetaPoco"><span class="iconfont-archer">&#xe606;</span>PetaPoco</span>
+    
+        <span class="sidebar-tag-name" data-tags="生活"><span class="iconfont-archer">&#xe606;</span>生活</span>
+    
+        <span class="sidebar-tag-name" data-tags="Python"><span class="iconfont-archer">&#xe606;</span>Python</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br>
+    1、请确保node版本大于6.2<br>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "Microbubu Groner"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+    </body>
+</html>
+
+
