@@ -596,7 +596,7 @@ height:50vh;
 </tr>
 </tbody>
 </table>
-<p>这里数据比较少，直接卸载代码中，如果数据较多可以使用读取csv文件的方式将数据载入DataFrame数据结构中。</p>
+<p>这里数据比较少，直接写在代码中，如果数据较多可以使用读取csv文件的方式将数据载入DataFrame数据结构中。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pylab</span><br><span class="line"><span class="keyword">import</span> pandas</span><br><span class="line"></span><br><span class="line">data = [[<span class="number">1</span>, <span class="string">'url1'</span>, <span class="number">2334</span>, <span class="number">12</span>],</span><br><span class="line">        [<span class="number">2</span>, <span class="string">'url2'</span>, <span class="number">3088</span>, <span class="number">235</span>],</span><br><span class="line">        [<span class="number">3</span>, <span class="string">'url3'</span>, <span class="number">12345</span>, <span class="number">321</span>],</span><br><span class="line">        [<span class="number">4</span>, <span class="string">'url4'</span>, <span class="number">5234</span>, <span class="number">500</span>],</span><br><span class="line">        [<span class="number">5</span>, <span class="string">'url5'</span>, <span class="number">2441</span>, <span class="number">130</span>],</span><br><span class="line">        [<span class="number">6</span>, <span class="string">'url6'</span>, <span class="number">2808</span>, <span class="number">250</span>],</span><br><span class="line">        [<span class="number">7</span>, <span class="string">'url7'</span>, <span class="number">3002</span>, <span class="number">287</span>],</span><br><span class="line">        [<span class="number">8</span>, <span class="string">'url8'</span>, <span class="number">4321</span>, <span class="number">335</span>],</span><br><span class="line">        [<span class="number">9</span>, <span class="string">'url9'</span>, <span class="number">4534</span>, <span class="number">383</span>],</span><br><span class="line">        [<span class="number">10</span>, <span class="string">'url10'</span>, <span class="number">18000</span>, <span class="number">986</span>],</span><br><span class="line">        [<span class="number">11</span>, <span class="string">'url11'</span>, <span class="number">3478</span>, <span class="number">367</span>],</span><br><span class="line">        [<span class="number">12</span>, <span class="string">'url12'</span>, <span class="number">4256</span>, <span class="number">354</span>]]</span><br><span class="line"></span><br><span class="line">csv_data = pandas.DataFrame(data)</span><br><span class="line">data_T = csv_data.T <span class="comment"># 转置</span></span><br><span class="line">reads = data_T.values[<span class="number">2</span>]  <span class="comment"># 取第3行</span></span><br><span class="line">comments = data_T.values[<span class="number">3</span>] <span class="comment"># 取第4行</span></span><br><span class="line">pylab.title(<span class="string">'Reads and Comments Analysis'</span>)</span><br><span class="line">pylab.xlabel(<span class="string">'reads'</span>)</span><br><span class="line">pylab.ylabel(<span class="string">'comments'</span>)</span><br><span class="line">pylab.plot(reads, comments, <span class="string">'ob'</span>)</span><br><span class="line">pylab.show()</span><br></pre></td></tr></table></figure>
 <p>结果:</p>
 <p><img src="https://tgwiza.by.files.1drv.com/y4mpGk6WJS351tHFjGUGsG3adhwlDbSGpctFVRfo-0wmB-kdLdOCEHdmcsLTA-HdEehKMtiWfxi5yL96hIUp5n1b5MEb_i8IVfFzDWJSLKUjebr1RGKG8rKczZgxF9QYVIk4BLhhjmicFt3JnT78055cwZPDAr8FU8DrQBRpkjVKgD9hKTy4jIBHHiHmcLafzNgr2ZXuMYwCYsrPNhFD0dMmQ?width=640&amp;height=470&amp;cropmode=none" alt="实践"></p>
@@ -608,13 +608,18 @@ height:50vh;
             <p>原文作者：<a href="https://microbubu.github.io">Microbubu Groner</a>
             </p><p>原文链接：<a href="https://microbubu.github.io/2018/11/06/Python与大数据入门/">https://microbubu.github.io/2018/11/06/Python与大数据入门/</a>
             </p><p>发表日期：<a href="https://microbubu.github.io/2018/11/06/Python与大数据入门/">November 6th 2018, 10:20:26 am</a>
-            </p><p>更新日期：<a href="https://microbubu.github.io/2018/11/06/Python与大数据入门/">November 6th 2018, 4:40:36 pm</a>
+            </p><p>更新日期：<a href="https://microbubu.github.io/2018/11/06/Python与大数据入门/">November 8th 2018, 8:08:02 pm</a>
             </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
     <!-- paginator  -->
     <ul class="post-paginator">
         <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href="/2018/11/08/C-中的IEnumerator接口和IEumerable接口/" title="C#中的IEnumerator接口和IEumerable接口">
+                    <div class="nextTitle">C#中的IEnumerator接口和IEumerable接口</div>
+                </a>
             
         </li>
         <li class="previous">
@@ -809,9 +814,18 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 6
+        Total : 7
         </div>
         <!-- search  -->
         
@@ -824,6 +838,11 @@ top:50vh;
     
     <div class="archive-year"> 2018 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/08</span><a class="archive-post-title" href="/2018/11/08/C-中的IEnumerator接口和IEumerable接口/">C#中的IEnumerator接口和IEumerable接口</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -860,19 +879,21 @@ top:50vh;
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
+        <span class="sidebar-tag-name" data-tags="C#"><span class="iconfont-archer">&#xe606;</span>C#</span>
+    
         <span class="sidebar-tag-name" data-tags="Markdown"><span class="iconfont-archer">&#xe606;</span>Markdown</span>
-    
-        <span class="sidebar-tag-name" data-tags="生活"><span class="iconfont-archer">&#xe606;</span>生活</span>
-    
-        <span class="sidebar-tag-name" data-tags="OneDrive"><span class="iconfont-archer">&#xe606;</span>OneDrive</span>
-    
-        <span class="sidebar-tag-name" data-tags="图床"><span class="iconfont-archer">&#xe606;</span>图床</span>
     
         <span class="sidebar-tag-name" data-tags=".NetCore"><span class="iconfont-archer">&#xe606;</span>.NetCore</span>
     
         <span class="sidebar-tag-name" data-tags="WebApi"><span class="iconfont-archer">&#xe606;</span>WebApi</span>
     
         <span class="sidebar-tag-name" data-tags="PetaPoco"><span class="iconfont-archer">&#xe606;</span>PetaPoco</span>
+    
+        <span class="sidebar-tag-name" data-tags="生活"><span class="iconfont-archer">&#xe606;</span>生活</span>
+    
+        <span class="sidebar-tag-name" data-tags="OneDrive"><span class="iconfont-archer">&#xe606;</span>OneDrive</span>
+    
+        <span class="sidebar-tag-name" data-tags="图床"><span class="iconfont-archer">&#xe606;</span>图床</span>
     
         <span class="sidebar-tag-name" data-tags="Python"><span class="iconfont-archer">&#xe606;</span>Python</span>
     
