@@ -346,6 +346,107 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2018/11/22/三菱MC协议/">
+            
+                <span>三菱MC协议</span>
+        </a>
+        <div class="abstract-content">
+            读数据控制字符
+
+
+控制字符
+ASCII码
+含义
+
+
+
+
+ENQ
+05H
+PC机要求通信
+
+
+ACK
+06H
+PLC响应“了解”
+
+
+NAK
+15H
+PLC响应“不了解”
+
+
+STX
+02H
+报文开始标志
+
+
+EXT
+03H
+报文结束标志
+
+
+
+发送命令通用格式：
+
+
+
+STX
+CMD
+ADD
+LEN
+EXT
+CHK
+
+
+
+
+起始符
+读命令
+元件起始地址
+长度
+停止符
+校验码
+
+
+0x02
+0x30
+...
+...
+0x03
+...
+
+
+
+[说明]
+
+
+CMD的0x30代表这是一条读取指令；
+ADD是一次读取位元件或字元件的4位起始地址，高位在前，地位在后，ASCII码；
+LEN是读取的...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/11/22</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="PLC">PLC</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2018/11/13/单向链表/">
             
                 <span>单向链表</span>
@@ -859,9 +960,22 @@ iOS设...
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 9
+        Total : 10
         </div>
         <!-- search  -->
         
@@ -874,6 +988,11 @@ iOS设...
     
     <div class="archive-year"> 2018 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/22</span><a class="archive-post-title" href="/2018/11/22/三菱MC协议/">三菱MC协议</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -925,21 +1044,23 @@ iOS设...
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
+        <span class="sidebar-tag-name" data-tags="C#"><span class="iconfont-archer">&#xe606;</span>C#</span>
+    
+        <span class="sidebar-tag-name" data-tags="PLC"><span class="iconfont-archer">&#xe606;</span>PLC</span>
+    
         <span class="sidebar-tag-name" data-tags="Markdown"><span class="iconfont-archer">&#xe606;</span>Markdown</span>
     
-        <span class="sidebar-tag-name" data-tags="C#"><span class="iconfont-archer">&#xe606;</span>C#</span>
+        <span class="sidebar-tag-name" data-tags="OneDrive"><span class="iconfont-archer">&#xe606;</span>OneDrive</span>
+    
+        <span class="sidebar-tag-name" data-tags="图床"><span class="iconfont-archer">&#xe606;</span>图床</span>
+    
+        <span class="sidebar-tag-name" data-tags="数据结构与算法"><span class="iconfont-archer">&#xe606;</span>数据结构与算法</span>
     
         <span class="sidebar-tag-name" data-tags=".NetCore"><span class="iconfont-archer">&#xe606;</span>.NetCore</span>
     
         <span class="sidebar-tag-name" data-tags="WebApi"><span class="iconfont-archer">&#xe606;</span>WebApi</span>
     
         <span class="sidebar-tag-name" data-tags="PetaPoco"><span class="iconfont-archer">&#xe606;</span>PetaPoco</span>
-    
-        <span class="sidebar-tag-name" data-tags="数据结构与算法"><span class="iconfont-archer">&#xe606;</span>数据结构与算法</span>
-    
-        <span class="sidebar-tag-name" data-tags="OneDrive"><span class="iconfont-archer">&#xe606;</span>OneDrive</span>
-    
-        <span class="sidebar-tag-name" data-tags="图床"><span class="iconfont-archer">&#xe606;</span>图床</span>
     
         <span class="sidebar-tag-name" data-tags="生活"><span class="iconfont-archer">&#xe606;</span>生活</span>
     

@@ -346,40 +346,95 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2018/11/02/Markdown常用语法总结/">
+        <a class="abstract-title" href="/2018/11/22/三菱MC协议/">
             
-                <span>Markdown常用语法总结</span>
+                <span>三菱MC协议</span>
         </a>
         <div class="abstract-content">
-            
-
-标题
-
-一级标题: #
-二级标题: ##
-…
-六级标题: ######
+            读数据控制字符
 
 
-代码块单行代码
-语法格式: 用两个“ ` ”符号将代码内容包裹起来：
+控制字符
+ASCII码
+含义
 
-print(&quot;Single Line Code&quot;)
-多行代码
-语法格式: 用两个“ ``` ”符号将代码内容包裹起来，还可以在第一个符号后面注明语言名(python, java, csharp, json…)以高亮显示：
 
-1234public void Main(string[] args)&#123;    Console.WriteLine("This is C# Code.");    Console.Read...
+
+
+ENQ
+05H
+PC机要求通信
+
+
+ACK
+06H
+PLC响应“了解”
+
+
+NAK
+15H
+PLC响应“不了解”
+
+
+STX
+02H
+报文开始标志
+
+
+EXT
+03H
+报文结束标志
+
+
+
+发送命令通用格式：
+
+
+
+STX
+CMD
+ADD
+LEN
+EXT
+CHK
+
+
+
+
+起始符
+读命令
+元件起始地址
+长度
+停止符
+校验码
+
+
+0x02
+0x30
+...
+...
+0x03
+...
+
+
+
+[说明]
+
+
+CMD的0x30代表这是一条读取指令；
+ADD是一次读取位元件或字元件的4位起始地址，高位在前，地位在后，ASCII码；
+LEN是读取的...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/11/02</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/11/22</span>
             </div>
             <!-- tags  -->
             
             <div class="abstract-tags">
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="Markdown">Markdown</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="PLC">PLC</a>
     
 </div>
             
