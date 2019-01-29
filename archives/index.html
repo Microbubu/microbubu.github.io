@@ -583,9 +583,9 @@ LEN是读取的...
             
             <div class="abstract-tags">
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="数据结构与算法">数据结构与算法</a>
-    
         <a class="post-tag" href="javascript:void(0);" data-tags="C#">C#</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="数据结构与算法">数据结构与算法</a>
     
 </div>
             
@@ -622,9 +622,9 @@ LEN是读取的...
             
             <div class="abstract-tags">
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="数据结构与算法">数据结构与算法</a>
-    
         <a class="post-tag" href="javascript:void(0);" data-tags="C#">C#</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="数据结构与算法">数据结构与算法</a>
     
 </div>
             
@@ -761,33 +761,22 @@ print(&quot;Single Line Code&quot;)
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2018/11/01/我的设备/">
+        <a class="abstract-title" href="/2018/11/01/使用-NetCore搭建一个简单的WebApi/">
             
-                <span>我的设备(不定期更新)</span>
+                <span>使用.NetCore搭建一个简单的WebApi</span>
         </a>
         <div class="abstract-content">
-            正在服役的设备Windows设备
-全家福：
+            创建工程和数据库
 
-Surface Pro 4 (4GB Ram + 128GB SSD)
-Lumia 1520 (Windows 10 Mobile 1607)
-Alcatel Idol 4s (Windows 10 Mobile 1709)
-Hasee CP5S2 (i5 8400 + GTX 1060 6GB + 16GB Ram)
+首先在Visual Studio中新建.NetCore Api工程CoreWebApiWithPetaPoco.
+在Nuget中引入第三方包PetaPoco.NetCore.
+本地创建数据库并创建一个名为AuthUser的表:
 
 
+12345CREATE TABLE [dbo].[AuthUser] (    [Id] BIGINT IDENTITY (1, 1) NOT NULL,    [Name] NVARCHAR (50) NOT NULL,    PRIMARY KEY CLUSTERED ([Id] ASC));
+创建模型
 
-
-我的桌面：
-
-Hasee游戏笔记本
-游戏悍将显示器 (2K + 144Hz, 多说一句：144Hz刷新率真舒服，有种优雅的感觉)
-Sony叮咚智能蓝牙音箱
-微软900键鼠套装 (图中没有拍摄)
-一棵竹子
-
-
-
-iOS设...
+在本地项目中新建Models文...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -798,7 +787,11 @@ iOS设...
             
             <div class="abstract-tags">
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="生活">生活</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags=".NetCore">.NetCore</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="WebApi">WebApi</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="PetaPoco">PetaPoco</a>
     
 </div>
             
@@ -1027,31 +1020,9 @@ iOS设...
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 13
+        Total : 11
         </div>
         <!-- search  -->
         
@@ -1121,11 +1092,6 @@ iOS设...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">11/01</span><a class="archive-post-title" href="/2018/11/01/我的设备/">我的设备(不定期更新)</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">11/01</span><a class="archive-post-title" href="/2018/11/01/使用-NetCore搭建一个简单的WebApi/">使用.NetCore搭建一个简单的WebApi</a>
         </li>
     
@@ -1134,25 +1100,16 @@ iOS设...
             <span class="archive-post-date">11/01</span><a class="archive-post-title" href="/2018/11/01/使用OneDrive作为图床/">使用OneDrive作为图床</a>
         </li>
     
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">10/31</span><a class="archive-post-title" href="/2018/10/31/第一篇博客/">回顾2018</a>
-        </li>
-    
     </ul></div>
   </div>
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="数据结构与算法"><span class="iconfont-archer">&#xe606;</span>数据结构与算法</span>
+        <span class="sidebar-tag-name" data-tags="Markdown"><span class="iconfont-archer">&#xe606;</span>Markdown</span>
     
         <span class="sidebar-tag-name" data-tags="C#"><span class="iconfont-archer">&#xe606;</span>C#</span>
     
-        <span class="sidebar-tag-name" data-tags="Markdown"><span class="iconfont-archer">&#xe606;</span>Markdown</span>
-    
-        <span class="sidebar-tag-name" data-tags="OneDrive"><span class="iconfont-archer">&#xe606;</span>OneDrive</span>
-    
-        <span class="sidebar-tag-name" data-tags="图床"><span class="iconfont-archer">&#xe606;</span>图床</span>
+        <span class="sidebar-tag-name" data-tags="数据结构与算法"><span class="iconfont-archer">&#xe606;</span>数据结构与算法</span>
     
         <span class="sidebar-tag-name" data-tags=".NetCore"><span class="iconfont-archer">&#xe606;</span>.NetCore</span>
     
@@ -1162,11 +1119,15 @@ iOS设...
     
         <span class="sidebar-tag-name" data-tags="PLC"><span class="iconfont-archer">&#xe606;</span>PLC</span>
     
-        <span class="sidebar-tag-name" data-tags="Linux"><span class="iconfont-archer">&#xe606;</span>Linux</span>
+        <span class="sidebar-tag-name" data-tags="OneDrive"><span class="iconfont-archer">&#xe606;</span>OneDrive</span>
+    
+        <span class="sidebar-tag-name" data-tags="图床"><span class="iconfont-archer">&#xe606;</span>图床</span>
     
         <span class="sidebar-tag-name" data-tags="面试题"><span class="iconfont-archer">&#xe606;</span>面试题</span>
     
         <span class="sidebar-tag-name" data-tags="Python"><span class="iconfont-archer">&#xe606;</span>Python</span>
+    
+        <span class="sidebar-tag-name" data-tags="Linux"><span class="iconfont-archer">&#xe606;</span>Linux</span>
     
         <span class="sidebar-tag-name" data-tags="Map"><span class="iconfont-archer">&#xe606;</span>Map</span>
     
@@ -1175,8 +1136,6 @@ iOS设...
         <span class="sidebar-tag-name" data-tags="Kotlin"><span class="iconfont-archer">&#xe606;</span>Kotlin</span>
     
         <span class="sidebar-tag-name" data-tags="集合"><span class="iconfont-archer">&#xe606;</span>集合</span>
-    
-        <span class="sidebar-tag-name" data-tags="生活"><span class="iconfont-archer">&#xe606;</span>生活</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
